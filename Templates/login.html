@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/styles.css">
+  <title>Login - BokoHacks</title>
+</head>
+<body>
+  <header>
+    <h1>Login</h1>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/login" class="active">Login</a></li>
+        <li><a href="/register">Register</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+  
+    <section>
+      <h2>Welcome Back</h2>
+      <p>Please login to access your account and participate in the challenge.</p>
+      <form action="/login" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        
+        <button type="submit">Login</button>
+      </form>
+      <p>Don't have an account? <a href="/register">Register here</a>.</p>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 BokoHacks | All Rights Reserved</p>
+  </footer>
+</body>
+</html>

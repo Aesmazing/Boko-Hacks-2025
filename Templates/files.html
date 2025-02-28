@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure File Repository</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .file-upload-container {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            max-width: 100%;
+            margin: 20px auto;
+        }
+        
+        .file-list {
+            max-width: 100%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .file-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .file-list li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .file-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .allowed-types {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .secure-notice {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        
+        .download-btn {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        
+        .delete-file {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        .file-actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .file-info {
+            flex-grow: 1;
+        }
+        
+        .no-files {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+        }
+        
+        .modal-body {
+            padding: 0 !important;
+        }
+        
+        header {
+            padding: 1rem;
+        }
+        
+        header h1 {
+            font-size: 1.8rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Secure File Repository</h1>
+    </header>
+
+    <!-- Message container for displaying success/error messages -->
+    <div id="message-container"></div>
+
+    <div class="file-upload-container">
+        <div class="secure-notice">
+            <strong>Secure File Storage:</strong> This application only accepts image and PDF files for security purposes.
+        </div>
+        
+        <form id="file-upload-form" enctype="multipart/form-data">
+            <input type="file" name="file" id="file" required>
+            <div class="allowed-types">
+                <strong>Allowed file types:</strong> .pdf, .png, .jpg, .jpeg, .gif
+            </div>
+            <button type="submit">Upload File</button>
+        </form>
+    </div>
+
+    <div class="file-list">
+        <h2>Your Uploaded Files</h2>
+        {% if files and files|length > 0 %}
+            <ul id="file-list">
+                {% for file in files %}
+                <li data-file-id="{{ file.id }}">
+                    <div class="file-info">
+                        <strong>{{ file.filename }}</strong>
+                        <div>Uploaded: {{ file.uploaded_at }}</div>
+                    </div>
+                    <div class="file-actions">
+                        <button class="download-btn" onclick="window.open('/apps/files/download/{{ file.id }}', '_blank')">Download</button>
+                        <button class="delete-file" data-file-id="{{ file.id }}">Delete</button>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="no-files">You haven't uploaded any files yet.</div>
+        {% endif %}
+    </div>
+
+    <script>
+        console.log("Files HTML template loaded");
+        console.log("Files found: {{ files|length if files else 0 }}");
+    </script>
+</body>
+</html>

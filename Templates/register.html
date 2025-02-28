@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <title>Register - BokoHacks</title>
+</head>
+<body>
+  <header>
+    <h1>Register</h1>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('home.home') }}">Home</a></li>
+        <li><a href="{{ url_for('login.login') }}">Login</a></li>
+        <li><a href="{{ url_for('register.register') }}" class="active">Register</a></li>
+        <li><a href="{{ url_for('about.about') }}">About</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    <section>
+      <h2>Create an Account</h2>
+      <p>Sign up to participate in BokoHacks and test your security skills.</p>
+      <form action="{{ url_for('register.register') }}" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Choose a username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Create a password" required>
+        
+        <label for="captcha">Enter CAPTCHA:</label>
+        <div class="captcha-box">
+          <img src="{{ url_for('captcha.get_captcha') }}" alt="CAPTCHA" class="captcha-image">
+        </div>
+        <input type="text" id="captcha" name="captcha" placeholder="Enter the text shown above" required>
+        
+        <button type="submit">Register</button>
+      </form>
+      <p>Already have an account? <a href="{{ url_for('login.login') }}">Login here</a>.</p>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 BokoHacks | All Rights Reserved</p>
+  </footer>
+
+  <style>
+    .captcha-box {
+      width: 100%;
+      text-align: center;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      background: white;
+    }
+    
+    .captcha-image {
+      max-width: 200px;
+      height: auto;
+    }
+    
+    form input[type="text"]#captcha {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+  </style>
+</body>
+</html>

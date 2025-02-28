@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <title>About - BokoHacks</title>
+</head>
+<body>
+  <header>
+    <h1>About BokoHacks</h1>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('home.home') }}">Home</a></li>
+        <li><a href="{{ url_for('login.login') }}">Login</a></li>
+        <li><a href="{{ url_for('register.register') }}">Register</a></li>
+        <li><a href="{{ url_for('about.about') }}" class="active">About</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>What is BokoHacks?</h2>
+      <p>BokoHacks is a web security hackathon designed for undergraduate and high school students. With a focus on both AI and cybersecurity, participants explore real-world vulnerabilities, patch security gaps, or develop new solutions—all within a fast-paced, team-based environment. It’s a chance to expand your skills and contribute to practical, modern security challenges.</p>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 BokoHacks | All Rights Reserved</p>
+  </footer>
+</body>
+</html>

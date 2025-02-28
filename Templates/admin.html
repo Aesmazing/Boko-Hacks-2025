@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - BokoHacks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div id="admin-root"></div>
+
+    <script type="module">
+        import React from 'react';
+        import ReactDOM from 'react-dom/client';
+        import AdminInterface from '/static/js/AdminInterface.js';
+
+        const root = ReactDOM.createRoot(document.getElementById('admin-root'));
+        root.render(React.createElement(AdminInterface));
+    </script>
+</body>
+</html>

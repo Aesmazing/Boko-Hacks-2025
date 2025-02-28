@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+    
+    <header class="dashboard-header">
+        <h1>Welcome, {{ username }}</h1>
+        <nav>
+          <ul>
+            <li><a href="{{ url_for('hub.hub') }}" class="active">Dashboard</a></li>
+            <li><a href="{{ url_for('login.logout') }}" class="logout-link">Logout</a></li>
+          </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="dashboard-content">
+            <h2 class="section-left">Internal Applications Portal</h2>
+    
+            <div class="apps-grid">
+                <div class="app-card" data-app="news">
+                    <h3>Company News</h3>
+                    <p>Stay updated with the latest business and industry news.</p>
+                    <span class="difficulty">Difficulty: Easy</span>
+                </div>
+                
+                <div class="app-card" data-app="notes">
+                    <h3>Notes App</h3>
+                    <p>A simple note-taking platform for jotting down tasks, ideas, and reminders.</p>
+                    <span class="difficulty">Difficulty: Easy</span>
+                </div>
+                
+                <div class="app-card" data-app="upload">
+                    <h3>Document Upload</h3>
+                    <p>Upload and store your PDF files for easy sharing with teammates.</p>
+                    <span class="difficulty">Difficulty: Medium</span>
+                </div>
+                
+                <div class="app-card" data-app="admin">
+                    <h3>Admin Portal</h3>
+                    <p>Reserved for authorized personnel only.</p>
+                    <span class="difficulty">Difficulty: Medium</span>
+                </div>
+                
+                <div class="app-card" data-app="401k">
+                    <h3>401(k) Portal</h3>
+                    <p>View and manage your retirement contributions.</p>
+                    <span class="difficulty">Difficulty: Medium</span>
+                </div>
+            </div>
+    
+            <div id="app-modal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modal-title">App Title</h3>
+                        <button class="close-modal">&times;</button>
+                    </div>
+                    <div class="modal-body" id="app-container">
+                    </div>
+                </div>
+            </div> 
+        </section>
+    </main>
+</body>
+</html>
